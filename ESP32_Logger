@@ -1,0 +1,16 @@
+// Tambahkan kode ini ke AppScript kalian
+
+function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = JSON.parse(e.postData.contents);
+
+  // Ambil data dari ESP32
+  var suhu = data.suhu;
+  var angin = data.angin;
+  var waktu = new Date();
+
+  // Simpan ke baris baru
+  sheet.appendRow([waktu, suhu, angin]);
+
+  return ContentService.createTextOutput("Data berhasil disimpan");
+}
